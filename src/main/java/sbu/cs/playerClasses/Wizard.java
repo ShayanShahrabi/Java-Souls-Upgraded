@@ -12,10 +12,9 @@ public class Wizard extends Player
     private int damageSpellPower = 20;
     private int damageSpellCost = 10;
     private int healSpellCost = 20;
-
+    //-----------------------------------------------------------------------------
     @Override
-    public void attack(GameObject target)
-    {
+    public void attack(GameObject target){
         if(mana <= 0) {
             System.out.println("Wizard does not have enough mana! ");
         }
@@ -23,8 +22,8 @@ public class Wizard extends Player
         mana -= damageSpellCost;
         target.takeDamage(damageSpellPower);
     }
-    public void heal(Player player)
-    {
+    //-----------------------------------------------------------------------------
+    public void heal(Player player){
         if(mana <= 0)
         {
             System.out.println("Wizard does not have enough mana! ");
@@ -34,7 +33,8 @@ public class Wizard extends Player
         System.out.println(playerName  + " HEALED " + player.playerName + " (Current Health: " + player.health + ")");
         mana -= damageSpellCost;
     }
-
+    //-----------------------------------------------------------------------------
+    // constructor
     public Wizard(String playerName) {
         super(playerName);
     }
