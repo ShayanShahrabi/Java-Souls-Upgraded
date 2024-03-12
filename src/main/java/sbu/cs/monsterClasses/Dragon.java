@@ -15,7 +15,6 @@ public class Dragon extends Monster{
     //-----------------------------------------------------------------------------
     @Override
     public void attack(GameObject target){
-        System.out.println(name + " FIRED " + ((Player) target).playerName);
         target.takeDamage(fireDamage);
     }
     //-----------------------------------------------------------------------------

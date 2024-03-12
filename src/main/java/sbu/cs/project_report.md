@@ -1,0 +1,1 @@
+To run the project, run the `App.java` file :)

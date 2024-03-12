@@ -1,4 +1,5 @@
 package sbu.cs;
+import static sbu.cs.App.*;
 
 public abstract class Monster implements GameObject {
     public String name;
@@ -15,25 +16,24 @@ public abstract class Monster implements GameObject {
     }
     //-----------------------------------------------------------------------------
     public void attack(GameObject target){
-        System.out.println(name + " ATTACKED " + ((Player)target).playerName);
+        printRed(name + " ATTACKED " + ((Player)target).playerName);
         target.takeDamage(attackPower);
     }
     //-----------------------------------------------------------------------------
     public void takeDamage(int damage){
-        System.out.println(name + " TOOK " + damage + " DAMAGE!");
+        printGreen(name + " TOOK " + damage + " DAMAGE!");
         health -= damage;
-        if(health <= 0)
-        {
+        if(health <= 0){
             health = 0;
             die();
             return;
         }
-        System.out.println(name + " HEALTH IS " + health);
+        printGreen(name + " HEALTH IS " + health);
     }
     //-----------------------------------------------------------------------------
     public void die(){
         isAlive = false;
-        System.out.println(name  + " DIED");
+        printGreen(name  + " DIED");
     }
     //-----------------------------------------------------------------------------
 }

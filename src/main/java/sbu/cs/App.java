@@ -15,6 +15,7 @@ public class App{
     private static List<Player> playerList = new ArrayList<>();
     //-----------------------------------------------------------------------------
     public static void main(String[] args) {
+        clearScreen();
         runMenu();
     }
     //-----------------------------------------------------------------------------
@@ -33,7 +34,7 @@ public class App{
     //-----------------------------------------------------------------------------
     public static void createCharacter(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("How many players do you want (Enter a number)");
+        System.out.println("Enter the number of players");
         int playerCount = scanner.nextInt();
         if(playerCount <= 0) { createCharacter();}
 
@@ -46,7 +47,9 @@ public class App{
         for(int i = 0; i < playerCount; i++)
         {
             System.out.println("");
-            System.out.println((i + 1) + ") Enter player info (a number representing the type followed by enter and then a name for the player)");
+            System.out.println((i + 1) + ") Enter player info " +
+                    "(a number representing the type of the character, " +
+                    "followed by a whitespace and then a name for the player)");
             int playerType = scanner.nextInt();
 
             String playerName = scanner.next();
@@ -77,21 +80,21 @@ public class App{
             }
             catch (Exception exception){}
 
-            System.out.println("---- Enemy's Turn ----");
+            printRed("---- Enemy's Turn ----");
 
             enemyNextMove(player);
             alivePlayerCount = getAlivePlayers().size();
 
             try{
-                Thread.sleep(2000);
+                Thread.sleep(8000);
             }
             catch (Exception exception){}
         }
         if(alivePlayerCount == 0){
-            System.out.println("GAME OVER!");
+            printRed("GAME OVER");
         }
         if(aliveMonsterCount == 0){
-            System.out.println("YOU WON!");
+            printGreen("YOU WON!");
         }
     }
     //-----------------------------------------------------------------------------
@@ -139,10 +142,10 @@ public class App{
     }
     //-----------------------------------------------------------------------------
     private static Player playerNextMove(){
-        System.out.println("---- Battle Begins ----");
+        printGreen("\nBATTLE BEGINS ...");
         Player player = chooseRandomAlivePlayer();
 
-        System.out.println("You are " + player.playerName);
+        printYellow("\nYou are " + player.playerName);
 
         if(player instanceof Wizard){
             Wizard wizard = (Wizard) player;
@@ -169,7 +172,7 @@ public class App{
                 return null;
             }
        }
-        System.out.println("Choose enemy to attack..");
+        printYellow("\nChoose enemy to attack..");
         ArrayList<Monster> aliveMonsters = getAliveMonsters();
         int i = 1;
         for(Monster monster : aliveMonsters){
@@ -190,4 +193,29 @@ public class App{
         monster.attack(player);
     }
     //-----------------------------------------------------------------------------
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+    //-----------------------------------------------------------------------------
+    // methods to write colored text in terminal
+    public static void printRed(String text) {
+        System.out.println("\u001B[31m" + text + "\u001B[0m");
+    }
+
+    public static void printGreen(String text) {
+        System.out.println("\u001B[32m" + text + "\u001B[0m");
+    }
+
+    public static void printYellow(String text) {
+        System.out.println("\033[0;33m" + text + "\u001B[0m");
+    }
+
+    public static void printBlue(String text) {
+        System.out.println("\u001B[34m" + text + "\u001B[0m");
+    }
+    //-----------------------------------------------------------------------------
+
+
+
 }
