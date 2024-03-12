@@ -21,6 +21,7 @@ public class Wizard extends Player
         }
         System.out.println(playerName  + " SPELLED " + ((Monster) target).name);
         mana -= damageSpellCost;
+        target.takeDamage(damageSpellPower);
     }
     public void heal(Player player)
     {
