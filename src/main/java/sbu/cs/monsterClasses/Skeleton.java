@@ -1,6 +1,7 @@
 package sbu.cs.monsterClasses;
 
 import sbu.cs.Monster;
+import static sbu.cs.App.*;
 
 public class Skeleton extends Monster{
     int baseHealth;
@@ -14,20 +15,20 @@ public class Skeleton extends Monster{
     }
     //-----------------------------------------------------------------------------
     public void takeDamage(int damage){
-        System.out.println(name + " TOOK " + damage + " DAMAGE!");
+        printGreen(name + " TOOK " + damage + " DAMAGE!");
         health -= damage;
         if(health <= 0){
             deathCount++;
             if(deathCount < 2){
                 health = baseHealth;
-                System.out.println(name + " DIED, BUT CAME BACK!");
+                printGreen(name + " DIED, BUT CAME BACK!");
                 return;
             }
             health = 0;
             die();
             return;
         }
-        System.out.println(name + "HEALTH IS " + health);
+        printGreen(name + "HEALTH IS " + health);
     }
     //-----------------------------------------------------------------------------
 }
