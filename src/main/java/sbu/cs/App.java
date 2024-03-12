@@ -1,5 +1,4 @@
 package sbu.cs;
-
 import sbu.cs.monsterClasses.Dragon;
 import sbu.cs.monsterClasses.Goblin;
 import sbu.cs.monsterClasses.Skeleton;
@@ -46,6 +45,7 @@ public class App {
 
         System.out.println("1) Assassin");
         System.out.println("2) Knight");
+        System.out.println("3) Wizard");
 
         for(int i = 0; i < playerCount; i++)
         {
@@ -73,16 +73,35 @@ public class App {
         while(alivePlayerCount > 0 && aliveMonsterCount >  0)
         {
             Player player = playerNextMove();
+            if(player == null) player = chooseRandomAlivePlayer();
             aliveMonsterCount = getAliveMonsters().size();
             if(aliveMonsterCount == 0)
             {
                 break;
             }
+
+            try
+            {
+                Thread.sleep(2000);
+            }
+            catch (Exception exception)
+            {
+
+            }
+
             System.out.println("---- Enemy's Turn ----");
 
             enemyNextMove(player);
             alivePlayerCount = getAlivePlayers().size();
 
+            try
+            {
+                Thread.sleep(2000);
+            }
+            catch (Exception exception)
+            {
+
+            }
         }
 
         if(alivePlayerCount == 0)
@@ -155,9 +174,43 @@ public class App {
 
     private static Player playerNextMove()
     {
-        Player player = chooseRandomAlivePlayer();
         System.out.println("---- Battle Begins ----");
+        Player player = chooseRandomAlivePlayer();
+
         System.out.println("You are " + player.playerName);
+
+        if(player instanceof Wizard)
+        {
+            Wizard wizard = (Wizard) player;
+            System.out.println("Do you want to heal friends or curse enemies?");
+            System.out.println("1) Heal Friends");
+            System.out.println("2) Curse Enemy");
+
+            Scanner choosingScanner = new Scanner(System.in);
+            int theChoise = choosingScanner.nextInt();
+            if(theChoise == 1)
+            {
+                System.out.println("Choose friend to heal..");
+                ArrayList<Player> alivePlayers = getAlivePlayers();
+                int i = 1;
+                for(Player thePlayer: alivePlayers)
+                {
+                    System.out.println(i + ") " + thePlayer.playerName + " -- Health: " + thePlayer.health);
+                    i++;
+                }
+
+                Scanner chosingPlayerScanner = new Scanner(System.in);
+                int chosenPlayer = chosingPlayerScanner.nextInt();
+                if(chosenPlayer < 1 || chosenPlayer > alivePlayers.size())
+                {
+                    chosenPlayer = 1;
+                }
+                wizard.heal(alivePlayers.get(chosenPlayer - 1));
+                return null;
+            }
+
+       }
+
         System.out.println("Choose enemy to attack..");
         ArrayList<Monster> aliveMonsters = getAliveMonsters();
         int i = 1;
@@ -182,5 +235,4 @@ public class App {
         Monster monster = chooseRandomAliveMonster();
         monster.attack(player);
     }
-
 }

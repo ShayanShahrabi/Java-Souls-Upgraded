@@ -2,10 +2,10 @@ package sbu.cs;
 
 public abstract class Player implements GameObject
 {
-    protected int health;
+    public int health;
     protected boolean isAlive ;
     protected int attackPower;
-    protected String playerName;
+    public String playerName;
 
     public Player(String playerName)
     {
