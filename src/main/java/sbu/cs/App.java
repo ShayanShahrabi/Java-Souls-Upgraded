@@ -67,7 +67,7 @@ public class App{
     public static void startBattle(){
         alivePlayerCount = playerList.size();
         aliveMonsterCount = monsterList.size();
-        while(alivePlayerCount > 0 && aliveMonsterCount >  0){
+        while(alivePlayerCount > 0 && aliveMonsterCount > 0){
             Player player = playerNextMove();
             if(player == null) player = chooseRandomAlivePlayer();
             aliveMonsterCount = getAliveMonsters().size();
@@ -76,17 +76,17 @@ public class App{
             }
 
             try{
-                Thread.sleep(2000);
+                Thread.sleep(6000);
             }
             catch (Exception exception){}
 
-            printRed("---- Enemy's Turn ----");
+            printRed("\n---- Enemy's Turn ----");
 
             enemyNextMove(player);
             alivePlayerCount = getAlivePlayers().size();
 
             try{
-                Thread.sleep(8000);
+                Thread.sleep(6000);
             }
             catch (Exception exception){}
         }
@@ -215,7 +215,4 @@ public class App{
         System.out.println("\u001B[34m" + text + "\u001B[0m");
     }
     //-----------------------------------------------------------------------------
-
-
-
 }
