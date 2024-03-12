@@ -4,8 +4,9 @@ import sbu.cs.Monster;
 
 public class Goblin extends Monster
 {
-    public Goblin()
+    public Goblin(String name)
     {
+        super(name);
 
     }
 

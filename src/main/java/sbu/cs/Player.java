@@ -3,8 +3,8 @@ package sbu.cs;
 public abstract class Player implements GameObject
 {
     protected int health;
+    protected boolean isAlive ;
     protected int attackPower;
-    protected boolean isAlive;
     protected String playerName;
 
     public Player(String playerName)
@@ -17,6 +17,7 @@ public abstract class Player implements GameObject
 
     public void attack(GameObject target)
     {
+        System.out.println(playerName + " attacked " + ((Monster)target).name + "! ");
         target.takeDamage(attackPower);
     }
 
@@ -35,8 +36,7 @@ public abstract class Player implements GameObject
 
     public void die()
     {
+        isAlive = false;
         System.out.println(playerName + " DIED");
     }
-
-
 }

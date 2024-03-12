@@ -1,6 +1,7 @@
 package sbu.cs.playerClasses;
 
 import sbu.cs.GameObject;
+import sbu.cs.Monster;
 import sbu.cs.Player;
 
 public class Assassin extends Player
@@ -16,11 +17,12 @@ public class Assassin extends Player
     {
         if(isInvisible)
         {
+            System.out.println(playerName + " was hidden and attacked " + ((Monster) target).name);
             isInvisible = false;
             target.takeDamage(attackPower * criticalMultuplayer);
             return;
         }
+        System.out.println(playerName + " attacked " + ((Monster) target).name);
         target.takeDamage(attackPower);
     }
-
 }
