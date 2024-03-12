@@ -7,6 +7,7 @@ import sbu.cs.Player;
 public class Dragon extends Monster{
     int fireDamage;
     //-----------------------------------------------------------------------------
+    // constructor
     public Dragon(String name){
         super(name);
         fireDamage = 20;
