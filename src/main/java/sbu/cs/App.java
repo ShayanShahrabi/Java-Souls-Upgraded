@@ -163,7 +163,7 @@ public class App {
         int i = 1;
         for(Monster monster : aliveMonsters)
         {
-            System.out.println(i + ") " + monster.name);
+            System.out.println(i + ") " + monster.name + " -- Health: " + monster.health);
             i++;
         }
 
@@ -179,7 +179,6 @@ public class App {
 
     private static void enemyNextMove(Player player)
     {
-//        Player player = chooseRandomAlivePlayer();
         Monster monster = chooseRandomAliveMonster();
         monster.attack(player);
     }
