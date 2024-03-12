@@ -1,9 +1,11 @@
 package sbu.cs.playerClasses;
 
-// Implementing this class is optional
-public class Wizard
-{
-    public Wizard() {
+import sbu.cs.Player;
 
+// Implementing this class is optional
+public class Wizard extends Player
+{
+    public Wizard(String playerName) {
+        super(playerName);
     }
 }
